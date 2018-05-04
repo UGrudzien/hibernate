@@ -94,10 +94,15 @@ public class Main {
 		transaction.commit();
 	}
 	private void executeQueries() {
-        String hql = "FROM School";
+        String hql = "FROM School s WHERE s.name ='UJCM'";
         Query query = session.createQuery(hql);
-        List results = query.list();
-        System.out.println(results);
+        List <School>results = query.list();
+		Transaction transaction = session.beginTransaction();
+        for(School s: results){
+        	session.delete(s);
+        }
+    	transaction.commit();
+//        System.out.println(results);
 }
 
 	private void jdbcTest() {
