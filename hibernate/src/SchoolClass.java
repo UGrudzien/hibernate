@@ -8,6 +8,8 @@ public class SchoolClass implements java.io.Serializable {
 	private String profile;
 	private Set<Student> student;
 	
+	private Set<Teacher> teacher;
+	
 	public long getId() {
 		return id;
 	}
@@ -45,6 +47,12 @@ public class SchoolClass implements java.io.Serializable {
 	public Set<Student> getStudents(){
 		return student;
 	}
+//	public void setTeachers(Set<Teacher>teacher){
+//		this.teacher = teacher;
+//	}
+//	public Set<Teacher> getTeachers(){
+//		return teacher;
+//	}
 	public String toString() {
 		return "Class: " + profile + " (Started: " + getStartYear() + ", Current year: " + getCurrentYear() + ")";
 	}

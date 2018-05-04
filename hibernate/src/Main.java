@@ -20,15 +20,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-//		main.printSchools();
+		//main.printSchools();
 		main.addNewData();
 	
-		main.executeQueries();
-		main.numberOfSchool();
-		main.numberOFStudents();
-		main.numberOFSchoolWithMoreThanTwoClasses();
-		main.removeProfile();
-		main.testing();
+		//main.executeQueries();
+		//main.numberOfSchool();
+		//main.numberOFStudents();
+		//main.numberOFSchoolWithMoreThanTwoClasses();
+		//main.removeProfile();
+		//main.testing();
 		main.close();
 		
 		
@@ -54,21 +54,16 @@ public class Main {
 			System.out.println(s);
 			System.out.println(s.getClasses());
 			for(SchoolClass schoolclass: s.getClasses()){
-				System.out.println(schoolclass.getStudents());}
+				System.out.println(schoolclass.getStudents());
+//				System.out.println(schoolclass.getTeachers());
+				
+			}
 //			System.out.println(s.getStudents());
 			
 		}
 
 	}
-	private  void addNewData2(){
-		School school = new School();
-		school.setName("UJCM");
-		school.setAddress("Anny 12");
-
-		Transaction transaction = session.beginTransaction();
-		session.save(school); // gdzie newSchool to instancja nowej szko³y
-		transaction.commit();
-	}
+	
 	private  void addNewData(){
 		School school = new School();
 		school.setName("UJCM");
@@ -109,7 +104,26 @@ public class Main {
 		biology.setStudents(studentsMan);
 		classes.add(anatomy);
 		classes.add(biology);
+
+		
+//		Teacher newTeacher= new Teacher();
+//		newTeacher.setName("Ko");
+//		newTeacher.setSurname("Palnia");
+//		
+//		Teacher newTeacher2= new Teacher();
+//		newTeacher2.setName("Dia");
+//		newTeacher2.setSurname("Mentów");
+//		
+//		newTeacher.setClasses(classes);
+//		newTeacher2.setClasses(classes);
+//		Set<Teacher> teacherset = new HashSet<Teacher>();
+//		teacherset.add(newTeacher);
+//		teacherset.add(newTeacher2);
+//		anatomy.setTeachers(teacherset);
+
+		
 		school.setClasses(classes);
+		
 	
 		Transaction transaction = session.beginTransaction();
 		session.save(school); // gdzie newSchool to instancja nowej szko³y
