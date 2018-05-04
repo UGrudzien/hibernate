@@ -4,7 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -13,12 +16,16 @@ import org.hibernate.Transaction;
 
 public class Main {
 
-	Session session;
+	 Session session;
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		main.printSchools();
+//		main.printSchools();
+//		main.addNewData();
+		main.executeQueries();
 		main.close();
+		
+		
 	}
 
 	public Main() {
@@ -47,6 +54,51 @@ public class Main {
 		}
 
 	}
+	private  void addNewData(){
+		School school = new School();
+		school.setName("UJCM");
+		school.setAddress("Anny 12");
+		SchoolClass anatomy = new SchoolClass();
+		anatomy.setProfile("anatomy");
+		anatomy.setCurrentYear(4);
+		anatomy.setStartYear(1);
+		SchoolClass biology = new SchoolClass();
+		Student Anna= new Student();
+		Anna.setName("Anna");
+		Anna.setSurname("A");
+		Student Krzysztof = new Student();
+		Krzysztof.setName("Krzysztof");
+		Krzysztof.setSurname("k");
+		Student Tomasz=new Student();
+		Tomasz.setName("Tomasz");
+		Tomasz.setSurname("T");
+		Student Aurelia = new Student();
+		Aurelia.setName("Aurelia");
+		Aurelia.setSurname("Au");
+		Set<SchoolClass> classes = new HashSet<SchoolClass>();
+		Set<Student> studentsMan = new HashSet<Student>();
+		Set<Student> studentWoman = new HashSet<Student>();
+		classes.add(anatomy);
+		classes.add(biology);
+		studentsMan.add(Krzysztof);
+		studentsMan.add(Tomasz);
+		studentWoman.add(Anna);
+		studentWoman.add(Aurelia);
+		
+
+		school.setClasses(classes);
+		anatomy.setStudents(studentWoman);
+		biology.setStudents(studentsMan);
+		Transaction transaction = session.beginTransaction();
+		session.save(school); // gdzie newSchool to instancja nowej szko³y
+		transaction.commit();
+	}
+	private void executeQueries() {
+        String hql = "FROM School";
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        System.out.println(results);
+}
 
 	private void jdbcTest() {
 		Connection conn = null;
@@ -102,5 +154,8 @@ public class Main {
 		} // end try
 		System.out.println("Goodbye!");
 	}// end jdbcTest
+	
+
+	
 
 }
