@@ -5,7 +5,7 @@ public class Teacher {
 
 	private String name;
 	private String surname;
-	private Set<SchoolClass>schoolClass;
+	private Set<SchoolClass> schoolClass;
 	public long getId() {
 		return id;
 	}

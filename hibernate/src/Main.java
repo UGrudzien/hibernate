@@ -20,7 +20,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		Main main = new Main();
-		//main.printSchools();
+		main.printSchools();
 		main.addNewData();
 	
 		//main.executeQueries();
@@ -28,8 +28,10 @@ public class Main {
 		//main.numberOFStudents();
 		//main.numberOFSchoolWithMoreThanTwoClasses();
 		//main.removeProfile();
-		//main.testing();
-		main.close();
+		//main
+		
+//		main.testing();
+				main.close();
 		
 		
 	}
@@ -87,9 +89,9 @@ public class Main {
 		tomasz.setName("Tomasz");
 		tomasz.setSurname("T");
 		
-//		Student aurelia = new Student();
-//		aurelia.setName("Aurelia");
-//		aurelia.setSurname("Au");
+		Student aurelia = new Student();
+		aurelia.setName("Aurelia");
+		aurelia.setSurname("Au");
 		
 		Set<SchoolClass> classes = new HashSet<SchoolClass>();
 		
@@ -99,27 +101,27 @@ public class Main {
 		studentsMan.add(krzysztof);
 		studentsMan.add(tomasz);
 		studentWoman.add(anna);
-//		studentWoman.add(aurelia);
+		studentWoman.add(aurelia);
 		anatomy.setStudents(studentWoman);
 		biology.setStudents(studentsMan);
 		classes.add(anatomy);
 		classes.add(biology);
 
 		
-//		Teacher newTeacher= new Teacher();
-//		newTeacher.setName("Ko");
-//		newTeacher.setSurname("Palnia");
+		Teacher newTeacher= new Teacher();
+		newTeacher.setName("Ko");
+		newTeacher.setSurname("Palnia");
 //		
-//		Teacher newTeacher2= new Teacher();
-//		newTeacher2.setName("Dia");
-//		newTeacher2.setSurname("Mentów");
-//		
-//		newTeacher.setClasses(classes);
-//		newTeacher2.setClasses(classes);
-//		Set<Teacher> teacherset = new HashSet<Teacher>();
-//		teacherset.add(newTeacher);
-//		teacherset.add(newTeacher2);
-//		anatomy.setTeachers(teacherset);
+		Teacher newTeacher2= new Teacher();
+		newTeacher2.setName("Dia");
+		newTeacher2.setSurname("Mentów");
+		
+		newTeacher.setClasses(classes);
+		newTeacher2.setClasses(classes);
+		Set<Teacher> teacherset = new HashSet<Teacher>();
+		teacherset.add(newTeacher);
+		teacherset.add(newTeacher2);
+		anatomy.setTeachers(teacherset);
 
 		
 		school.setClasses(classes);

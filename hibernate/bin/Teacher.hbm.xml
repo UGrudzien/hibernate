@@ -2,14 +2,17 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="Teacher" table="teacher">
+	<class name="Teacher" table="teachers">
 		<id name="id" column="id" type="long">
 			<generator class="native"></generator>
 		</id>
 		
 		<property name="name" column="name" type="string"></property>
 		<property name="surname" column="surname" type="string"></property>
-		
+		<set name="classes" table = "classToTeacher" cascade="all">
+			<key column="teacher_id" />
+			<many-to-many column ="class_id" class="SchoolClass" />
+			</set>
 
 		
 			</class>
