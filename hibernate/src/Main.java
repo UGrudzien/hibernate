@@ -21,8 +21,14 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 //		main.printSchools();
-//		main.addNewData();
+		main.addNewData();
+	
 		main.executeQueries();
+		main.numberOfSchool();
+		main.numberOFStudents();
+		main.numberOFSchoolWithMoreThanTwoClasses();
+		main.removeProfile();
+		main.testing();
 		main.close();
 		
 		
@@ -54,6 +60,15 @@ public class Main {
 		}
 
 	}
+	private  void addNewData2(){
+		School school = new School();
+		school.setName("UJCM");
+		school.setAddress("Anny 12");
+
+		Transaction transaction = session.beginTransaction();
+		session.save(school); // gdzie newSchool to instancja nowej szko³y
+		transaction.commit();
+	}
 	private  void addNewData(){
 		School school = new School();
 		school.setName("UJCM");
@@ -62,39 +77,46 @@ public class Main {
 		anatomy.setProfile("anatomy");
 		anatomy.setCurrentYear(4);
 		anatomy.setStartYear(1);
+		
 		SchoolClass biology = new SchoolClass();
-		Student Anna= new Student();
-		Anna.setName("Anna");
-		Anna.setSurname("A");
-		Student Krzysztof = new Student();
-		Krzysztof.setName("Krzysztof");
-		Krzysztof.setSurname("k");
-		Student Tomasz=new Student();
-		Tomasz.setName("Tomasz");
-		Tomasz.setSurname("T");
-		Student Aurelia = new Student();
-		Aurelia.setName("Aurelia");
-		Aurelia.setSurname("Au");
+		
+		Student anna= new Student();
+		anna.setName("Anna");
+		anna.setSurname("A");
+		
+		Student krzysztof = new Student();
+		krzysztof.setName("Krzysztof");
+		krzysztof.setSurname("k");
+		
+		Student tomasz=new Student();
+		tomasz.setName("Tomasz");
+		tomasz.setSurname("T");
+		
+//		Student aurelia = new Student();
+//		aurelia.setName("Aurelia");
+//		aurelia.setSurname("Au");
+		
 		Set<SchoolClass> classes = new HashSet<SchoolClass>();
+		
 		Set<Student> studentsMan = new HashSet<Student>();
 		Set<Student> studentWoman = new HashSet<Student>();
-		classes.add(anatomy);
-		classes.add(biology);
-		studentsMan.add(Krzysztof);
-		studentsMan.add(Tomasz);
-		studentWoman.add(Anna);
-		studentWoman.add(Aurelia);
-		
-
-		school.setClasses(classes);
+	
+		studentsMan.add(krzysztof);
+		studentsMan.add(tomasz);
+		studentWoman.add(anna);
+//		studentWoman.add(aurelia);
 		anatomy.setStudents(studentWoman);
 		biology.setStudents(studentsMan);
+		classes.add(anatomy);
+		classes.add(biology);
+		school.setClasses(classes);
+	
 		Transaction transaction = session.beginTransaction();
 		session.save(school); // gdzie newSchool to instancja nowej szko³y
 		transaction.commit();
 	}
 	private void executeQueries() {
-        String hql = "FROM School s WHERE s.name ='UJCM'";
+        String hql = "FROM School s WHERE s.name ='EU'";
         Query query = session.createQuery(hql);
         List <School>results = query.list();
 		Transaction transaction = session.beginTransaction();
@@ -104,6 +126,41 @@ public class Main {
     	transaction.commit();
 //        System.out.println(results);
 }
+	public void numberOfSchool(){
+		String hql="SELECT COUNT(s) FROM School s";
+		 Query query = session.createQuery(hql);
+		 List results= query.list();
+		 System.out.println("Number of schools " +results);	
+	}
+	
+	public void numberOFStudents(){
+		String hql ="SELECT COUNT (stud) FROM Student stud";
+		 Query query = session.createQuery(hql);
+		 List results= query.list();
+		 System.out.println("Number of students "+results);
+	}
+	public void numberOFSchoolWithMoreThanTwoClasses(){
+		String hql = "SELECT COUNT(s) FROM School s WHERE size(s.classes)>=2";
+		 Query query = session.createQuery(hql);
+		 List results= query.list();
+		 System.out.println("Number of school with more than 2 classes "+results);
+	}
+	public void removeProfile(){
+		String hql = "SELECT s FROM School s INNER JOIN s.classes classes WHERE classes.profile = 'mat-fiz' AND classes.currentYear >=2";
+		 Query query = session.createQuery(hql);
+		 List results= query.list();
+		 System.out.println("remove mat-fiz profile "+results);
+	}
+	public void testing(){
+		Query query = session.createQuery("from School where id= :id");
+		query.setLong("id", 2);
+		School school = (School) query.uniqueResult();
+		school.setAddress("Nowy Adress");
+		Transaction transaction = session.beginTransaction();
+		session.save(school);
+		transaction.commit();
+	}
+	
 
 	private void jdbcTest() {
 		Connection conn = null;
