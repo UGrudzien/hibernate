@@ -4,8 +4,9 @@ public class SchoolClass implements java.io.Serializable {
 
 	private long id;
 	private int startYear;
-	private int currentYear;
+	private Integer currentYear;
 	private String profile;
+	private Set<Student> student;
 	
 	public long getId() {
 		return id;
@@ -23,11 +24,11 @@ public class SchoolClass implements java.io.Serializable {
 		this.startYear = startYear;
 	}
 
-	public int getCurrentYear() {
+	public Integer getCurrentYear() {
 		return currentYear;
 	}
 
-	public void setCurrentYear(int currentYear) {
+	public void setCurrentYear(Integer currentYear) {
 		this.currentYear = currentYear;
 	}
 
@@ -38,7 +39,12 @@ public class SchoolClass implements java.io.Serializable {
 	public void setProfile(String profile) {
 		this.profile = profile;
 	}
-
+	public void setStudents( Set<Student> student){
+		this.student = student;
+	}
+	public Set<Student> getStudents(){
+		return student;
+	}
 	public String toString() {
 		return "Class: " + profile + " (Started: " + getStartYear() + ", Current year: " + getCurrentYear() + ")";
 	}

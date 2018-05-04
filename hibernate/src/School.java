@@ -10,7 +10,7 @@ public class School implements java.io.Serializable {
 	private String name;
 	private String address;
 	private Set<SchoolClass> schoolClass;
-	private Set<Student> student;
+	
 	
 
 	public School() {
@@ -47,13 +47,8 @@ public class School implements java.io.Serializable {
 	public Set<SchoolClass> getClasses(){
 		return schoolClass;
 	}
-	public void setStudents( Set<Student> student){
-		this.student = student;
-	}
-	public Set<Student> getStudents(){
-		return student;
-	}
+
 	public String toString() {
-		return "School: " + getName() + " (" + getAddress() + ")" + getClasses() + getStudents();
+		return "School: " + getName() + " (" + getAddress() + ")";
 }
 }

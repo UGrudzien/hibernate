@@ -8,9 +8,12 @@
 		</id>
 		
 		<property name="profile" column="profile" type="string"></property>
-		<property name="currentYear" column="currentYear" type="string"></property>
-				<property name="startYear" column="startYear" type="string"></property>
+		<property name="currentYear" column="currentYear" type="int"></property>
+				<property name="startYear" column="startYear" type="int"></property>
 		
-		
+			<set name="students" cascade="all">
+<key column="class_id" />
+<one-to-many class="Student" />
+</set>
 			</class>
 </hibernate-mapping>

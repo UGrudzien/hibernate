@@ -37,6 +37,6 @@ public class Student {
 		this.pesel = pesel;
 	}
 	public String toString() {
-		return "Students: " +   getName() + getSurname() + "("+ getPesel()+")";
+		return "Students: " +   getName() +" "+ getSurname() + "("+ getPesel()+")";
 	}
 }

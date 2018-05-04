@@ -33,11 +33,19 @@ public class Main {
 	private void printSchools() {
 		Criteria crit = session.createCriteria(School.class);
 		List<School> schools = crit.list();
+		Criteria crit2 = session.createCriteria(SchoolClass.class);
+		List<SchoolClass> classes = crit2.list();
 
 		System.out.println("### Schools and classes and students");
 		for (School s : schools) {
 			System.out.println(s);
+			System.out.println(s.getClasses());
+			for(SchoolClass schoolclass: s.getClasses()){
+				System.out.println(schoolclass.getStudents());}
+//			System.out.println(s.getStudents());
+			
 		}
+
 	}
 
 	private void jdbcTest() {
