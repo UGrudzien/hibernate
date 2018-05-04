@@ -2,20 +2,15 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="School" table="schools">
+	<class name="Student" table="students">
 		<id name="id" column="id" type="long">
 			<generator class="native"></generator>
 		</id>
 		
 		<property name="name" column="name" type="string"></property>
-		<property name="address" column="address" type="string"></property>
-<set name="classes" cascade="all">
-<key column="school_id" />
-<one-to-many class="SchoolClass" />
-</set>
-	<set name="students" cascade="all">
-<key column="school_id" />
-<one-to-many class="Student" />
-</set>
-	</class>
+		<property name="surname" column="surname" type="string"></property>
+				<property name="pesel" column="pesel" type="string"></property>
+
+		
+			</class>
 </hibernate-mapping>

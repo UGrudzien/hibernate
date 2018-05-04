@@ -1,9 +1,17 @@
+import java.util.ArrayList;
+import java.util.Set;
+
+import antlr.collections.List;
+
 @SuppressWarnings("serial")
 public class School implements java.io.Serializable {
 
 	private long id;
 	private String name;
 	private String address;
+	private Set<SchoolClass> schoolClass;
+	private Set<Student> student;
+	
 
 	public School() {
 	}
@@ -32,8 +40,20 @@ public class School implements java.io.Serializable {
 		this.address = address;
 	}
 	
-	public String toString() {
-		return "School: " + getName() + " (" + getAddress() + ")";
-}
 
+	public void setClasses( Set<SchoolClass> schoolClass){
+		this.schoolClass=schoolClass;
+	}
+	public Set<SchoolClass> getClasses(){
+		return schoolClass;
+	}
+	public void setStudents( Set<Student> student){
+		this.student = student;
+	}
+	public Set<Student> getStudents(){
+		return student;
+	}
+	public String toString() {
+		return "School: " + getName() + " (" + getAddress() + ")" + getClasses() + getStudents();
+}
 }

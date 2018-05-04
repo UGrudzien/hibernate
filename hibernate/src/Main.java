@@ -34,7 +34,7 @@ public class Main {
 		Criteria crit = session.createCriteria(School.class);
 		List<School> schools = crit.list();
 
-		System.out.println("### Schools and classes");
+		System.out.println("### Schools and classes and students");
 		for (School s : schools) {
 			System.out.println(s);
 		}
